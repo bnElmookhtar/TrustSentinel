@@ -223,6 +223,32 @@ button:hover {
         width: 100%;
     }
 }
+/* Snackbar styling */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Will be visible when triggered */
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 17px;
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s ease-in-out;
+}
+
+/* Show the snackbar when triggered */
+#snackbar.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+
 
 footer {
     background-color: #16213e;
