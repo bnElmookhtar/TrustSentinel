@@ -88,8 +88,8 @@ nav select {
     border-radius: 5px;
 }
 
-/* SMS Detection Section */
-.sms-container {
+/* email Detection Section */
+.email-container {
     max-width: 600px;
     margin: 50px auto;
     background: rgba(0, 0, 0, 0.7);
@@ -103,7 +103,7 @@ nav select {
     
 }
 
-.sms-input-section {
+.email-input-section {
     margin-top: 20px;
 }
 
