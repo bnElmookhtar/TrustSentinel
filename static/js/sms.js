@@ -21,7 +21,20 @@ function checkSpam() {
     })
     .then(response => response.json())
     .then(data => {
-      
+        // Hide progress bar after 5 seconds
+        setTimeout(() => {
+            document.querySelector(".progress-bar-container").style.display = "none";
+            
+            // Reset everything to default state
+            document.getElementById("result").innerText = "";
+            document.getElementById("awareness-image").src = "../static/images/default-image.png"; // Reset image to default
+            document.getElementById("awareness-message").innerText = "";
+            document.getElementById("smsInput").value = ""; // Clear the input field
+            
+            // Show result container
+            document.querySelector(".result-container").style.display = "flex";
+        }, 5000); // Hide the progress bar after 5 seconds
+
         const resultText = document.getElementById("result");
         const awarenessImage = document.getElementById("awareness-image");
         const awarenessMessage = document.getElementById("awareness-message");
