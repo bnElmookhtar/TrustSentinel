@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustSentinel - Social Engineering Attack Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sms.css') }}">
+</head>
+
+<body>
+    <header>
+        <img src="../static/images/logo.png" alt="TrustSentinel" id="logo">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" id="home">Home</a></li>
+                <li><a href="#" id="about">About</a></li>
+                <li><a href="#" id="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 id="title">TrustSentinel - SMS Phishing detector</h1>
+            <p id="description">Detecting SMS phishing is crucial to prevent financial fraud, identity theft, and data breaches by identifying malicious messages before they deceive users.</p>
+        </section>
+        
+        <section>
+            <div class="sms-container">
+                <h1 id="sms-title">SMS Phishing Detection</h1>
+                <p id="sms-description">Enter an SMS message to check if it's a phishing attempt.</p>
+                
+                <div class="sms-input-section">
+                    <img src="../static/images/sms.jpg" alt="SMS Detection" class="feature-image">
+                    <textarea id="smsInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
+                    <button onclick="checkSpam()">Check</button>
+                    <p id="result"></p>
+                    
+                    <!-- This section will show the awareness message with an image if the result is spam or ham -->
+                    <div class="result-container">
+                        <div>
+                            <p id="result"></p>
+                            <img id="awareness-image" src="../static/images/signature.png" alt="Awareness Image">
+                            <p id="awareness-message"></p>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="progress-bar-container" style="display: none;">
+                    <div class="progress-bar"></div>
+                </div>
+              
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/sms.js') }}"></script>
+
+    <footer>
+        <p>&copy; 2025 TrustSentinel - All Rights Reserved</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+</body>
+
+</html>
