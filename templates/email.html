@@ -14,40 +14,41 @@
         <img src="../static/images/logo.png" alt="TrustSentinel" id="logo">
         <nav>
             <ul>
-                <li><a href="{{ url_for('home')  }}" id="home">Home</a></li>
+                <li><a href="{{ url_for('home') }}" id="home">Home</a></li>
                 <li><a href="#" id="about">About</a></li>
                 <li><a href="#" id="contact">Contact</a></li>
-
             </ul>
         </nav>
     </header>
     <main>
         <section class="hero">
-            <h1 id="title">TrustSentinel - EMAIL Physhing detector</h1>
-            <p id="description">Detecting email phishing is crucial to prevent financial fraud, identity theft, and data breaches by identifying malicious messages before they deceive users.
-            </p>
+            <h1 id="title">TrustSentinel - EMAIL Phishing detector</h1>
+            <p id="description">Detecting email phishing is crucial to prevent financial fraud, identity theft, and data breaches by identifying malicious messages before they deceive users.</p>
         </section>
 
         <section>
-
             <div class="email-container">
                 <h1 id="email-title">Unmask Phishing Attempts</h1>
-                <p id="email">Paste your email here, and let us help you identify if it's a phishing attempt.
-                    Stay safe, stay smart!
-                </p>
+                <p id="email">Paste your email here, and let us help you identify if it's a phishing attempt. Stay safe, stay smart!</p>
 
                 <div class="email-input-section">
                     <img src="../static/images/emailSpy.jpeg" alt="email Detection" class="feature-image">
                     <textarea id="emailInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
-                    <button onclick="checkSpam()">Check</button>
+                    <button onclick="checkSpamEmail()">Check</button>
                     <p id="result"></p>
+                    
+                    <!-- Result container to show after processing -->
+                    <div class="result-container" style="display: none;">
+                        <p id="result"></p>
+                        <img id="awareness-image" src="../static/images/signature.png" alt="Awareness Image">
+                        <p id="awareness-message"></p>
+                    </div>
                 </div>
-
-                <p id="emailResult"></p>
             </div>
+
+            <div id="snackbar">Please enter a email to check.</div>
+
         </section>
-
-
     </main>
 
     <script src="{{ url_for('static', filename='js/email.js') }}"></script>
