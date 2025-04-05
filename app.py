@@ -13,9 +13,25 @@ def home():
     return render_template("index.html")  # Home page
 
 
+@app.route('/email')
+def email_page():
+    return render_template("email.html")
+
+@app.route('/predict_email', methods=['POST'])
+def predict_email():
+    data = request.get_json()
+    email_text = data['message']
+    
+    # Preprocess + vectorize
+    vectorized = vectorizer.transform([email_text])
+    prediction = model.predict(vectorized)
+
+    return jsonify({'prediction': prediction[0]})  # 'spam' or 'ham'
+
 @app.route('/sms')
-def sms_detector():
+def sms_page():
     return render_template("sms.html")  # SMS prediction page
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
