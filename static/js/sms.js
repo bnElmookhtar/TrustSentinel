@@ -2,10 +2,9 @@ function checkSpam() {
     let smsText = document.getElementById("smsInput").value;
 
     if (smsText.trim() === "") {
-        alert("Please enter a message.");
+        showSnackbar("Please enter a message.");
         return;
     }
-
     // Show progress bar while checking
     document.querySelector(".progress-bar-container").style.display = "block";
     document.querySelector(".progress-bar").style.width = "0%"; // Reset the width of progress bar
@@ -65,3 +64,16 @@ function checkSpam() {
         document.querySelector(".progress-bar-container").style.display = "none";
     });
 }
+
+// Function to show the snackbar
+function showSnackbar(message) {
+    var snackbar = document.getElementById("snackbar");
+    snackbar.innerText = message; // Set the message
+    snackbar.className = "show"; // Add the "show" class to make it visible
+
+    // After 3 seconds, remove the "show" class to hide the snackbar
+    setTimeout(function() {
+        snackbar.className = snackbar.className.replace("show", ""); 
+    }, 3000);
+}
+
