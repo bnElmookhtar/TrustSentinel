@@ -1,0 +1,63 @@
+{
+    "ml_models": {
+        "decision_tree": {
+            "model_name": "decision_tree",
+            "timestamp": "20250409_151937",
+            "model_path": "saved_models/decision_tree_20250409_151937.pkl",
+            "vectorizer_path": "saved_models/decision_tree_vectorizer_20250409_151937.pkl",
+            "model_type": "traditional_ml"
+        },
+        "random_forest": {
+            "model_name": "random_forest",
+            "timestamp": "20250409_151938",
+            "model_path": "saved_models/random_forest_20250409_151938.pkl",
+            "vectorizer_path": "saved_models/random_forest_vectorizer_20250409_151938.pkl",
+            "model_type": "traditional_ml"
+        },
+        "svm": {
+            "model_name": "svm",
+            "timestamp": "20250409_151938",
+            "model_path": "saved_models/svm_20250409_151938.pkl",
+            "vectorizer_path": "saved_models/svm_vectorizer_20250409_151938.pkl",
+            "model_type": "traditional_ml"
+        },
+        "logistic_regression": {
+            "model_name": "logistic_regression",
+            "timestamp": "20250409_151938",
+            "model_path": "saved_models/logistic_regression_20250409_151938.pkl",
+            "vectorizer_path": "saved_models/logistic_regression_vectorizer_20250409_151938.pkl",
+            "model_type": "traditional_ml"
+        }
+    },
+    "dl_models": {
+        "lstm": {
+            "model_name": "lstm",
+            "timestamp": "20250409_151938",
+            "model_path": "saved_models/lstm_20250409_151938.h5",
+            "tokenizer_path": "saved_models/lstm_tokenizer_20250409_151938.pkl",
+            "model_type": "deep_learning",
+            "max_sequence_length": 100
+        },
+        "gru": {
+            "model_name": "gru",
+            "timestamp": "20250409_151940",
+            "model_path": "saved_models/gru_20250409_151940.h5",
+            "tokenizer_path": "saved_models/gru_tokenizer_20250409_151940.pkl",
+            "model_type": "deep_learning",
+            "max_sequence_length": 100
+        }
+    },
+    "preprocessing": {
+        "text_cleaner": "clean_text function",
+        "requirements": {
+            "python_version": "3.8+",
+            "packages": [
+                "nltk==3.6.2",
+                "scikit-learn==0.24.2",
+                "tensorflow==2.6.0",
+                "pandas==1.3.0",
+                "numpy==1.21.0"
+            ]
+        }
+    }
+}

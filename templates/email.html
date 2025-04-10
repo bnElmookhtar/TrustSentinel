@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrustSentinel - Social Engineering Attack Detection</title>
-
+    <title>TrustSentinel - Email Phishing Detector</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/email.css') }}">
 </head>
 
@@ -20,38 +19,44 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <section class="hero">
-            <h1 id="title">TrustSentinel - EMAIL Phishing detector</h1>
-            <p id="description">Detecting email phishing is crucial to prevent financial fraud, identity theft, and data breaches by identifying malicious messages before they deceive users.</p>
+            <h1 id="title">TrustSentinel - EMAIL Phishing Detector</h1>
+            <p id="description">Detecting email phishing is crucial to prevent fraud, identity theft, and data breaches by identifying malicious messages before they deceive users.</p>
         </section>
 
         <section>
-            <div class="email-container">
-                <h1 id="email-title">Unmask Phishing Attempts</h1>
-                <p id="email">Paste your email here, and let us help you identify if it's a phishing attempt. Stay safe, stay smart!</p>
+            <div class="sms-container"> <!-- Reuse same styling class -->
+                <h1 id="sms-title">Email Phishing Detection</h1>
+                <p id="sms-description">Paste your email message here, and let us help you identify phishing attempts.</p>
 
-                <div class="email-input-section">
-                    <img src="../static/images/emailSpy.jpeg" alt="email Detection" class="feature-image">
-                    <textarea id="emailInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
-                    <button onclick="checkSpamEmail()">Check</button>
+                <div class="sms-input-section"> <!-- Reuse styling -->
+                    <img src="../static/images/emailSpy.jpeg" alt="Email Detection" class="feature-image">
+                    <textarea id="smsInput" rows="4" cols="50" placeholder="Paste your email content here..."></textarea><br>
+                    <button onclick="checkSpam()">Check</button>
                     <p id="result"></p>
-                    
-                    <!-- Result container to show after processing -->
+
                     <div class="result-container" style="display: none;">
-                        <p id="result"></p>
-                        <img id="awareness-image" src="../static/images/signature.png" alt="Awareness Image">
-                        <p id="awareness-message"></p>
+                        <div>
+                            <p id="result"></p>
+                            <img id="awareness-image" src="../static/images/signature.png" alt="Awareness Image">
+                            <p id="awareness-message"></p>
+                        </div>
                     </div>
+                </div>
+
+                <div class="progress-bar-container" style="display: none;">
+                    <div class="progress-bar"></div>
                 </div>
             </div>
 
-            <div id="snackbar">Please enter a email to check.</div>
+            <div id="snackbar">Please enter an email message.</div>
 
         </section>
     </main>
 
-    <script src="{{ url_for('static', filename='js/email.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/email.js') }}"></script> <!-- Reuse updated JS -->
     <footer>
         <p>&copy; 2025 TrustSentinel - All Rights Reserved</p>
         <div class="social-media">

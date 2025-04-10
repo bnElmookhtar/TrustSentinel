@@ -1,17 +1,24 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for
+from flask import Flask, request, jsonify, render_template
 import pickle
-import os
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-app = Flask(__name__)  # Set frontend as template folder
+app = Flask(__name__)
 
-# Load model & vectorizer
-model = pickle.load(open("models/SPAM/models/spam_model.pkl", "rb"))
-vectorizer = pickle.load(open("models/SPAM/models/tfidf_vectorizer.pkl", "rb"))
+# Load SMS model and vectorizer
+smsModel = pickle.load(open("models/SPAM/models/spam_model.pkl", "rb"))
+smsVectorizer = pickle.load(open("models/SPAM/models/tfidf_vectorizer.pkl", "rb"))
+
+# Load Email model and tokenizer
+emailModel = load_model("models/PHYSHING/models/lstm.h5")
+with open("models/PHYSHING/models/lstm_tokenizer.pkl", "rb") as f:
+    emailTokenizer = pickle.load(f)
+
+MAX_SEQUENCE_LENGTH = 200  # لازم نفس الطول اللي استخدمته أثناء التدريب
 
 @app.route('/')
 def home():
-    return render_template("index.html")  # Home page
-
+    return render_template("index.html")
 
 @app.route('/email')
 def email_page():
@@ -22,29 +29,26 @@ def predict_email():
     data = request.get_json()
     email_text = data['message']
     
-    # Preprocess + vectorize
-    vectorized = vectorizer.transform([email_text])
-    prediction = model.predict(vectorized)
+    sequence = emailTokenizer.texts_to_sequences([email_text])
+    padded = pad_sequences(sequence, maxlen=MAX_SEQUENCE_LENGTH, padding='post')
 
-    return jsonify({'prediction': prediction[0]})  # 'spam' or 'ham'
+    prediction = emailModel.predict(padded)
+    predicted_label = "spam" if prediction[0][0] > 0.5 else "ham"
+
+    return jsonify({'prediction': predicted_label})
 
 @app.route('/sms')
 def sms_page():
-    return render_template("sms.html")  # SMS prediction page
-
+    return render_template("sms.html")
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.get_json()  # Get the data from the request
-    sms_text = data['message']  # Use 'message' here, not 'text'
+    data = request.get_json()
+    sms_text = data['message']
 
-    # Preprocess the SMS text (Vectorize, Predict, etc.)
-    sms_vectorized = vectorizer.transform([sms_text])  # Transform the text into a feature vector using the vectorizer
+    sms_vectorized = smsVectorizer.transform([sms_text])
+    prediction = smsModel.predict(sms_vectorized)
 
-    # Make a prediction using the loaded model
-    prediction = model.predict(sms_vectorized)
-
-    # Return the result as JSON ( Spam or  Not Spam)
     return jsonify({'prediction': prediction[0]})
 
 if __name__ == '__main__':

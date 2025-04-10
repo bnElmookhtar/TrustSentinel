@@ -54,9 +54,16 @@
                     
                 </div>
                 <div class="item">
-                    <img src="../static/images/robocall.jpg" alt="robocall image">
+                    <img src="{{ url_for('static', filename='images/robocall.jpg') }}" alt="ROBOCALLS  Image">
+                    <button class="feature" onclick="window.location.href='{{ url_for('sms_page') }}';">
+                        <p class="description">Catch The spam SMS</p>
+                    </button>
+
+                </div>
+                <div class="item">
+                    <img src="../static/images/emotional.jpg" alt="emotional image">
                     <button class="feature" >
-                        <p class="description">Hold The ROBOCALLS</p>
+                        <p class="description">Beware Cosmic Manipulation</p>
                     </button>
 
                 </div>
