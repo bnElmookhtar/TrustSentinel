@@ -1,0 +1,91 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0077cc;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+
+.content {
+  flex: 1;
+}
+
+/* تثبيت الفوتر في الأسفل */
+footer {
+  background-color: #f8f9fa;
+  padding: 15px 0;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+/* تحسين مظهر الروابط */
+.social-media a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+.nav-style {
+  border-bottom: var(--bs-border-width) var(--bs-border-style) #000000 !important;
+  --bs-navbar-brand-color: rgb(255 254 254)!important;
+  --bs-navbar-brand-hover-color: rgb(204 179 179)!important;
+  
+}
+.nav-link-color{
+  color: rgb(254 254 254 / 81%)!important;
+}
+.social-media a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+.body-color{
+  background-color: #191A2E;
+}
+.header-color{
+  background-color: #191a2e;
+}
+.nav-bg-color
+{
+  background-color: #192f49;
+}
+.footer-top-border{
+  border-top: var(--bs-border-width) var(--bs-border-style) #37414b !important;
+}
+.border-radius{
+  border-radius: 2.375rem !important;
+}

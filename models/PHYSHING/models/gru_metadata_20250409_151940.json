@@ -1,0 +1,1 @@
+{"model_name": "gru", "timestamp": "20250409_151940", "model_path": "saved_models/gru_20250409_151940.h5", "tokenizer_path": "saved_models/gru_tokenizer_20250409_151940.pkl", "model_type": "deep_learning", "max_sequence_length": 100}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrustSentinel - Social Engineering Attack Detection</title>
+    <link rel="stylesheet" href="static/js/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/css/site.css" />
+    <link rel="stylesheet" href="static/css/_Layout.css" />
+</head>
+
+<body>
+    <header class="header-color text-white">
+        <nav class="navbar nav-bg-color navbar-expand-sm navbar-light nav-style shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                    <img src="static/images/logo.png" alt="TrustSentinel Logo" class="logo">
+                    <span class="ms-2">TrustSentinel </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-color" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-color" href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-color" href="/contact">Contact</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="body-color text-white">
+        
+    <div class="sms-container">
+        <h1 id="sms-title">SMS Phishing Detection</h1>
+        <p id="sms-description">Enter an SMS message to check if it's a phishing attempt.</p>
+        
+        <div class="sms-input-section">
+            <img src="../static/images/sms.jpg" alt="SMS Detection" class="feature-image">
+            <textarea id="smsInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
+            <button onclick="checkSpam()">Check</button>
+            <p id="result"></p>
+            
+            <!-- This section will show the awareness message with an image if the result is spam or ham -->
+            <div class="result-container">
+                <div>
+                    <p id="result"></p>
+                    <img id="awareness-image" src="../static/images/signature.png" alt="Awareness Image">
+                    <p id="awareness-message"></p>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="progress-bar-container" style="display: none;">
+            <div class="progress-bar"></div>
+        </div>
+      
+    </div>
+
+    <div id="snackbar">Please enter a message.</div>
+
+        </div>
+ 
+    <footer class="footer-top-border footer header-color text-white">
+        <div class="container">
+            <p>&copy; 2025 TrustSentinel - All Rights Reserved</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+        </div>
+           
+        </div>
+    </footer>
+
+    <!-- Updated paths for static files -->
+    <script src="static/js/lib/jquery/dist/jquery.min.js"></script>
+    <script src="static/js/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/site.js"></script>
+    <script src="static/js/sms.js"></script>
+</body>
+</html>
