@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustSentinel - Robocall Detection</title>
+    <link rel="stylesheet" href="#">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="../static/images/logo.png" alt="TrustSentinel" id="logo">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}" id="home">Home</a></li>
+                <li><a href="#" id="about">About</a></li>
+                <li><a href="#" id="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 id="title">TrustSentinel - Robocall Detector</h1>
+            <p id="description">Protect yourself from robocalls by detecting automated and fraudulent calls designed to deceive users and steal personal information.</p>
+        </section>
+        
+        <section>
+            <div class="robocall-container">
+                <h1 id="robocall-title">Robocall Detection</h1>
+                <p id="robocall-description">Upload an audio file (e.g., WAV, MP3) to check if it's a robocall.</p>
+                
+                <div class="robocall-input-section">
+                    <img src="../static/images/robocall.jpg" alt="Robocall Detection" class="feature-image">
+                    <input type="file" id="fileInput" accept="audio/*" /><br>
+                    <button onclick="checkRobocall()">Check</button>
+                    
+                    <!-- Result container with data-result for dynamic styling -->
+                    <div class="result-container" data-result="">
+                        <div>
+                            <p id="result"></p>
+                            <img id="awareness-image" src="../static/images/robocall-awareness.png" alt="Awareness Image">
+                            <p id="awareness-message"></p>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar-container" style="display: none;">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div id="snackbar">Please upload an audio file.</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="#"></script>
+
+    <footer>
+        <p>© 2025 TrustSentinel - All Rights Reserved</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+</body>
+</html>
