@@ -1,4 +1,4 @@
-function checkSpam() {
+function checkSentiment() {
     let smsText = document.getElementById("smsInput").value;
 
     if (smsText.trim() === "") {
@@ -16,6 +16,7 @@ function checkSpam() {
         headers: {
             "Content-Type": "application/json"
         },
+        
         body: JSON.stringify({ message: smsText })
     })
     .then(response => response.json())
@@ -37,20 +38,28 @@ function checkSpam() {
         const resultText = document.getElementById("result");
         const awarenessImage = document.getElementById("awareness-image");
         const awarenessMessage = document.getElementById("awareness-message");
-
-        if (data.prediction === '0') {
-            // If prediction is not spam
-            resultText.innerText = "Prediction: Not Spam";
-            awarenessImage.src = "../static/images/ham.gif"; // Image for ham
-            awarenessMessage.innerText = "This message seems safe. Stay cautious and verify the sender.";
-            awarenessMessage.style.color = "green"; // Highlight safe message
-        } else {
-            // If prediction is spam
-            resultText.innerText = "Prediction: Spam";
-            awarenessImage.src = "../static/images/spamWarning.gif"; // Image for spam
-            awarenessMessage.innerText = "Warning! This message looks suspicious and might be a phishing attempt.";
-            awarenessMessage.style.color = "red"; // Highlight warning
-        }
+//Number	Emotion Description
+//1	Joy
+//2	Fear
+//3	Anger
+//4	Sadness
+//5	Disgust
+//6	Shame, Embarrassment, or Guilt
+//7	Embarrassment or Guilt
+if (data.prediction === '0' || data.prediction === '1') {
+               
+    resultText.innerText = "Prediction: Positive";
+    awarenessImage.src = "../static/images/Positive.jpg"; // Image for ham
+    awarenessMessage.innerText = "This message seems as Positive.";
+}
+else{      
+    
+            resultText.innerText = "Prediction: Negative";
+            awarenessImage.src = "../static/images/Negative.jpg"; // Image for ham
+            awarenessMessage.innerText = "This message seems as Negative.";
+       
+        
+ }
 
         // Show the result container with centered result and images
         document.querySelector(".result-container").style.display = "flex";

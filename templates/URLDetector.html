@@ -37,57 +37,33 @@
             </div>
         </nav>
     </header>
-    <div class="body-color text-white">
-        <div class="container text-center">
-        
-        <section>
-        <div class="sms-container"> <!-- Reuse same styling class -->
-            <h1 id="sms-title">Sentiment Phishing Detection</h1>
-            <p id="sms-description">Enter an message to check if it's a phishing attempt.</p>
-        
-        <div class="sms-input-section"> <!-- Reuse styling -->
-        <div class="row">
-        <div class="row">
-        <div class="col-md-4 mb-4  mx-auto text-center">
-        <div class="item">
-        <img src="../static/images/emotional.jpg" alt="emotion Detection" class="feature-image">                           
-        </div>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-4 mb-4  mx-auto text-center">
-        <div id="snackbar">Please enter a message.</div>
-        <textarea id="smsInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
-        <button onclick="checkSentiment()">Check</button>
-        <p id="result"></p>
-        
-        <div class="result-container" style="display: none;">
-        <div>
-        <p id="result"></p>
-        <img id="awareness-image" width="250" height="250" src="../static/images/signature.png" alt="Awareness Image">
-        <p id="awareness-message"></p>
-        </div>
-        </div>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-4 mb-4  mx-auto text-center">
-        <div class="progress-bar-container" style="display: none;">
-        <div class="progress-bar"></div>
-        </div>
-        </div>
-        
-        </div>
-        </div>
-        </div>
-        </div>
-        </section>   
-            
-        
-        </div>
-        </div>
+ <div class="body-color text-white">
+<div class="container text-center">
+<section>
+<div class="sms-container"> <!-- Reuse same styling class -->
+<h1 id="sms-title">🚨 Detect URL Before Click</h1>
+<p id="sms-description">Upload QR code image to check if it's a phishing attempt.</p>
+<div class="row">
+<div class="col-md-4 mb-4  mx-auto text-center">
+<div class="item">
 
+    <form method="POST" action="/predict_URL" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required><br><br>
+        <button type="submit">Analyze</button>
+    </form>
+    {% if result %}
+    <h3>Result: {{ result }}</h3>
+    <img src="{{ file_url }}" alt="Uploaded QR" width="200">
+{% endif %}
 
+</div>
+</div>
+</div>
+</div>
+</section>    
+</div>  
+ </div>
+ 
     <footer class="footer-top-border footer header-color text-white">
         <div class="container">
             <p>&copy; 2025 TrustSentinel - All Rights Reserved</p>
@@ -104,6 +80,5 @@
     <script src="static/js/lib/jquery/dist/jquery.min.js"></script>
     <script src="static/js/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="static/js/site.js"></script>
-    <script src="static/js/sentiment.js"></script>
 </body>
 </html>

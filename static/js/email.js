@@ -1,4 +1,4 @@
-function checkSpam() {
+function checkEmail() {
     let messageText = document.getElementById("smsInput").value;
 
     if (messageText.trim() === "") {
@@ -57,16 +57,3 @@ function showSnackbar(message) {
     }, 3000);
 }
 
-
-
-// Function to show the snackbar
-function showSnackbar(message) {
-    var snackbar = document.getElementById("snackbar");
-    snackbar.innerText = message; // Set the message
-    snackbar.className = "show"; // Add the "show" class to make it visible
-
-    // After 3 seconds, remove the "show" class to hide the snackbar
-    setTimeout(function() {
-        snackbar.className = snackbar.className.replace("show", ""); 
-    }, 3000);
-}

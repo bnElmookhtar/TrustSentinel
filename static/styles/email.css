@@ -241,7 +241,6 @@ button:hover {
     opacity: 0;
     transition: opacity 0.5s, bottom 0.5s ease-in-out;
 }
-
 /* Show the snackbar when triggered */
 #snackbar.show {
     visibility: visible;

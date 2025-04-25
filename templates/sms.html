@@ -38,39 +38,55 @@
             </div>
         </nav>
     </header>
-    <div class="body-color text-white">
-        
-    <div class="sms-container">
-        <h1 id="sms-title">SMS Phishing Detection</h1>
-        <p id="sms-description">Enter an SMS message to check if it's a phishing attempt.</p>
-        
-        <div class="sms-input-section">
-            <img src="../static/images/sms.jpg" alt="SMS Detection" class="feature-image">
-            <textarea id="smsInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
-            <button onclick="checkSpam()">Check</button>
-            <p id="result"></p>
-            
-            <!-- This section will show the awareness message with an image if the result is spam or ham -->
-            <div class="result-container">
-                <div>
-                    <p id="result"></p>
-                    <img id="awareness-image" src="../static/images/signature.png" alt="Awareness Image">
-                    <p id="awareness-message"></p>
-                </div>
-            </div>
-            
-        </div>
+<div class="body-color text-white">
+<div class="container text-center">
 
-        <div class="progress-bar-container" style="display: none;">
-            <div class="progress-bar"></div>
-        </div>
-      
-    </div>
+<section>
+<div class="sms-container"> <!-- Reuse same styling class -->
+    <h1 id="sms-title">SMS Phishing Detection</h1>
+    <p id="sms-description">Enter an SMS message to check if it's a phishing attempt.</p>
 
-    <div id="snackbar">Please enter a message.</div>
+<div class="sms-input-section"> <!-- Reuse styling -->
+<div class="row">
+<div class="row">
+<div class="col-md-4 mb-4  mx-auto text-center">
+<div class="item">
+<img src="../static/images/sms.jpg" alt="SMS Detection" class="feature-image">                           
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 mb-4  mx-auto text-center">
+<div id="snackbar">Please enter a message.</div>
+<textarea id="smsInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
+<button onclick="checkSpam()">Check</button>
+<p id="result"></p>
 
-        </div>
- 
+<div class="result-container" style="display: none;">
+<div>
+<p id="result"></p>
+<img id="awareness-image" width="250" height="250" src="../static/images/signature.png" alt="Awareness Image">
+<p id="awareness-message"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 mb-4  mx-auto text-center">
+<div class="progress-bar-container" style="display: none;">
+<div class="progress-bar"></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</section>   
+    
+
+</div>
+</div>
     <footer class="footer-top-border footer header-color text-white">
         <div class="container">
             <p>&copy; 2025 TrustSentinel - All Rights Reserved</p>

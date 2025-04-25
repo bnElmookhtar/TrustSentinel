@@ -39,58 +39,39 @@
         </nav>
     </header>
     <div class="body-color text-white">
-        <div class="container text-center">  
         <section class="hero">
-            <h1 id="title">TrustSentinel - EMAIL Phishing Detector</h1>
-            <p id="description">Detecting email phishing is crucial to prevent fraud, identity theft, and data breaches by identifying malicious messages before they deceive users.</p>
+            <h1 id="title">TrustSentinel - Robocall Detector</h1>
+            <p id="description">Protect yourself from robocalls by detecting automated and fraudulent calls designed to deceive users and steal personal information.</p>
         </section>
-
-
-<div class="sms-container"> <!-- Reuse same styling class -->
-<h1 id="sms-title">Email Phishing Detection</h1>
-<p id="sms-description">Paste your email message here, and let us help you identify phishing attempts.</p>
-
-<div class="sms-input-section"> <!-- Reuse styling -->
-<div class="row">
-<div class="row">
-<div class="col-md-4 mb-4  mx-auto text-center">
-<div class="item">
-<img src="../static/images/emailSpy.jpeg" alt="Email Detection" class="feature-image">
-
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-md-4 mb-4  mx-auto text-center">
-<div id="snackbar">Please enter an email message.</div>
-<textarea id="smsInput" rows="4" cols="50" placeholder="Paste your email content here..."></textarea><br>
-<button onclick="checkEmail()">Check</button>
-<p id="result"></p>
-
-<div class="result-container" style="display: none;">
-<div>
-<p id="result"></p>
-<img id="awareness-image" width="250" height="250" src="../static/images/signature.png" alt="Awareness Image">
-<p id="awareness-message"></p>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-md-4 mb-4  mx-auto text-center">
-<div class="progress-bar-container" style="display: none;">
-<div class="progress-bar"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-    </div>
-        </div>
         
-        </body>
+        <section>
+            <div class="robocall-container">
+                <h1 id="robocall-title">Robocall Detection</h1>
+                <p id="robocall-description">Upload an audio file (e.g., WAV, MP3) to check if it's a robocall.</p>
+                
+                <div class="robocall-input-section">
+                    <img src="../static/images/robocall.jpg" alt="Robocall Detection" class="feature-image">
+                    <input type="file" id="fileInput" accept="audio/*" /><br>
+                    <button onclick="checkRobocall()">Check</button>
+                    
+                    <!-- Result container with data-result for dynamic styling -->
+                    <div class="result-container" data-result="">
+                        <div>
+                            <p id="result"></p>
+                            <img id="awareness-image" src="../static/images/robocall-awareness.png" alt="Awareness Image">
+                            <p id="awareness-message"></p>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar-container" style="display: none;">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div id="snackbar">Please upload an audio file.</div>
+            </div>
+        </section>
+        </div>
  
     <footer class="footer-top-border footer header-color text-white">
         <div class="container">
@@ -108,9 +89,6 @@
     <script src="static/js/lib/jquery/dist/jquery.min.js"></script>
     <script src="static/js/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="static/js/site.js"></script>
-    <script src="static/js/email.js"></script>
+    <script src="static/js/robocalls.js"></script>
 </body>
 </html>
-
-       
-   
