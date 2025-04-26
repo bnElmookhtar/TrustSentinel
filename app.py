@@ -108,6 +108,8 @@ emailvectorizer_path = os.path.join(base_dir, "models", "PHYSHING", "models", "l
 emailVectorizer = joblib.load(emailvectorizer_path)    
 emailmodel = joblib.load(email_path)
 
+
+
     
 # Load Sentiment model and vectorizer
  
@@ -142,13 +144,28 @@ def predict_sentiment():
 
 @app.route('/predict_email', methods=['POST'])
 def predict_email():
-    data = request.get_json()
-    email_text = data['message']
+    try:
+        data = request.get_json(force=True)
+        email_text = data.get('message', '')
 
-    email_vectorized = smsVectorizer.transform([email_text])
-    prediction = emailmodel.predict(email_vectorized)
+        if not email_text:
+            return jsonify({'error': 'No message provided'}), 400
 
-    return jsonify({'prediction': prediction[0]})
+        # استخدم transform مش texts_to_sequences
+        email_vectorized = emailVectorizer.transform([email_text])
+
+        prediction = emailmodel.predict(email_vectorized)
+        
+        # لو الموديل بيرجع احتمالية (احتمال spam)
+        predicted_label = "spam" if prediction[0] > 0.5 else "ham"
+        # أو لو بيرجع كلاس 0 أو 1
+        # predicted_label = "spam" if prediction[0] == 1 else "ham"
+
+        return jsonify({'prediction': predicted_label})
+
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/predict_sms', methods=['POST'])
