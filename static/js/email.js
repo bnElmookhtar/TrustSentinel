@@ -1,4 +1,4 @@
-function checkEmail() {
+function checkSpam() {
     let messageText = document.getElementById("smsInput").value;
 
     if (messageText.trim() === "") {
