@@ -44,16 +44,22 @@
 <h1 id="sms-title">🚨 Detect URL Before Click</h1>
 <p id="sms-description">Upload QR code image to check if it's a phishing attempt.</p>
 <div class="row">
+    <div class="col-md-4 mb-4  mx-auto text-center">
+    <div class="item">
+        <img src="../static/images/QRimage.jpg" alt="QR Code Detection" class="feature-image">
+    </div>
+    </div>
+</div>    
+<div class="row">
 <div class="col-md-4 mb-4  mx-auto text-center">
 <div class="item">
-
     <form method="POST" action="/predict_URL" enctype="multipart/form-data">
         <input type="file" name="image" accept="image/*" required><br><br>
         <button type="submit">Analyze</button>
     </form>
     {% if result %}
     <h3>Result: {{ result }}</h3>
-    <img src="{{ file_url }}" alt="Uploaded QR" width="200">
+    <img src="{{ url_for('static', filename=file_url.split('static/')[1]) }}" alt="Uploaded QR" width="200">
 {% endif %}
 
 </div>

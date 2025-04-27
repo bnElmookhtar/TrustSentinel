@@ -9,6 +9,7 @@ import numpy as np
 import smtplib
 from email.mime.text import MIMEText
 import joblib
+import librosa
 
 # بيانات بريدك الإلكتروني
 EMAIL_ADDRESS = 'emanelmaasarawi@gmail.com'      # ✨ غيّريه لبريدك
@@ -128,6 +129,11 @@ with open(sentvectorizer_path, "rb") as vectorizer_file:
 URLDetector_path = os.path.join(base_dir, "models", "URLDetector", "models", "qr_spoofing_detector.h5")
 URLDetectormodel = load_model(URLDetector_path)
 
+
+# Load Audio model and tokenizer
+audio_path = os.path.join(base_dir, "models", "ROBOCALLS", "models", "robocall_classifier.h5")
+audiomodel = load_model(audio_path)
+
 MAX_SEQUENCE_LENGTH = 200  # لازم نفس الطول اللي استخدمته أثناء التدريب
 
 ######################### Routes #########################
@@ -178,19 +184,11 @@ def predict_sms():
 
     return jsonify({'prediction': prediction[0]})
 
-@app.route('/predict_ROBOCALLS', methods=['POST'])
-def predict_ROBOCALLS():
-    data = request.get_json()
-    robo_text = data['message']
-
-    prediction = ""
-
-    return jsonify({'prediction': prediction[0]})
 
 ################## URL Detector
-UPLOAD_FOLDER = 'static/uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # ✅ ده بيضمن إن المجلد موجود حتى لو ماكنش موجود قبل كده
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+UPLOAD_QRimage_FOLDER = 'static/uploads/QRimage'
+os.makedirs(UPLOAD_QRimage_FOLDER, exist_ok=True)  # ✅ ده بيضمن إن المجلد موجود حتى لو ماكنش موجود قبل كده
+app.config['UPLOAD_QRimage_FOLDER'] = UPLOAD_QRimage_FOLDER
 
 def predict_image(img_path):
     img = image.load_img(img_path, target_size=(256, 256))
@@ -212,7 +210,7 @@ def predict_URL():
 
     if file:
         filename = file.filename
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        filepath = os.path.join(app.config['UPLOAD_QRimage_FOLDER'], filename)
         file.save(filepath)
 
         # التنبؤ باستخدام النموذج
@@ -222,7 +220,69 @@ def predict_URL():
     # إعادة عرض النتيجة على نفس صفحة index
     return render_template('URLDetector.html', result=result, file_url=file_url)
 
-   
+ 
+ ################## audio Detector
+UPLOAD_audio_FOLDER = 'static/uploads/audio'
+os.makedirs(UPLOAD_audio_FOLDER, exist_ok=True)
+app.config['UPLOAD_audio_FOLDER'] = UPLOAD_audio_FOLDER
+
+def predict_audio_file(audio_path):
+    # تحميل الصوت
+    y, sr = librosa.load(audio_path, sr=22050)
+    
+    # استخراج MFCCs أو Mel spectrogram بالحجم الصح
+    mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=128)  # خليه 128
+    mfccs = mfccs[:, :157]  # تأكد إن العرض 157 (قصه لو أكتر)
+
+    # لو أقل من 157، كمله بـ zeros
+    if mfccs.shape[1] < 157:
+        pad_width = 157 - mfccs.shape[1]
+        mfccs = np.pad(mfccs, ((0, 0), (0, pad_width)), mode='constant')
+
+    # دلوقتي mfccs شكله (128, 157)
+    
+    # تطبيع الشكل (normalization لو عايز حسب التدريب)
+    mfccs = (mfccs - np.min(mfccs)) / (np.max(mfccs) - np.min(mfccs))  # اختياري لو دربت بكده
+
+    # اضف axis جديد علشان يبقى (128, 157, 1)
+    mfccs = np.expand_dims(mfccs, axis=-1)
+
+    # واضف axis لل batch (1, 128, 157, 1)
+    mfccs = np.expand_dims(mfccs, axis=0)
+
+    # توقع
+    prediction = audiomodel.predict(mfccs)
+    predicted_class = np.argmax(prediction, axis=1)[0]
+
+    # ترجمة الرقم إلى اسم
+    labels = {0: 'Robocall', 1: 'Legitimate Call'}
+    label_name = labels[predicted_class]
+
+    return label_name
+
+# راوت التوقع من ملف صوت
+@app.route('/predict_audio', methods=['POST'])
+def predict_audio_route():
+    if 'file' not in request.files:
+        return 'No file part'
+
+    file = request.files['file']
+    if file.filename == '':
+        return 'No selected file'
+
+    if file:
+        file_path = os.path.join(app.config['UPLOAD_audio_FOLDER'], file.filename)
+        file.save(file_path)
+
+        result = predict_audio_file(file_path)
+        file_url = file_path  # علشان تستخدمه للعرض مثلاً
+
+        return render_template('robocalls.html', result=result, file_url=file_url)
+ 
+ 
+ 
+
+
 
 
 if __name__ == '__main__':
