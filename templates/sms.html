@@ -57,9 +57,12 @@
 </div>
 <div class="row">
 <div class="col-md-4 mb-4  mx-auto text-center">
+  
 <div id="snackbar">Please enter a message.</div>
-<textarea id="smsInput" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
-<button onclick="checkSpam()">Check</button>
+
+<textarea id="smsInput" rows="4" class="form-control" id="exampleFormControlTextarea1"  placeholder="Type your message here..."></textarea>
+<button class="btn btn-outline-light bg-primary col-md-5 " onclick="checkSpam()">Check</button>
+   
 <p id="result"></p>
 
 <div class="result-container" style="display: none;">

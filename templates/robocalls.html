@@ -12,7 +12,7 @@
     <header class="header-color text-white">
         <nav class="navbar nav-bg-color navbar-expand-sm navbar-light nav-style shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="Home.html">
+                <a class="navbar-brand d-flex align-items-center" href="/">
                     <img src="static/images/logo.png" alt="TrustSentinel Logo" class="logo">
                     <span class="ms-2">TrustSentinel </span>
                 </a>
@@ -58,14 +58,17 @@
             <div class="col-md-4 mb-4  mx-auto text-center">
             <div class="item">
                 <form method="POST" action="/predict_audio" enctype="multipart/form-data">
-                    <input type="file" name="file" accept="audio/*"><br><br>
-                    <button type="submit">Analyze</button>
+                    <div class="input-group">
+                        <input type="file" name="file" accept="audio/*" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required>
+                        <button class="btn btn-outline-light bg-danger" id="inputGroupFileAddon04" type="submit">Analyze</button>
+                </div>
+                
                 </form>
                 
                 {% if result %}
                 <h3>Result: {{ result }}</h3>
                 <audio controls>
-                  <source src="{{ url_for('static', filename=file_url.split('static/')[1]) }}" type="audio/mpeg">
+                  <source src="{{ url_for('static', filename=file_url) }}" type="audio/mpeg">
                   Your browser does not support the audio element.
                 </audio>
             {% endif %}
